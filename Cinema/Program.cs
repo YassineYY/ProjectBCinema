@@ -11,7 +11,7 @@ namespace Cinema
             if (Convert.ToInt32(c) == 1) {
                 Console.WriteLine("**** MOVIE SELECTION ****");
             }
-            Console.Writeline("Test2")
+            Console.Writeline("Test3")
         }
     }
 }
