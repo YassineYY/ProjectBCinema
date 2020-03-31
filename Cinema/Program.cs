@@ -64,7 +64,84 @@ namespace Cinema
                     HomeScreen();
                 }
             }
+            static void CinemaSeats()
+            {
+                Console.WriteLine("*************************************************");
+                Console.WriteLine("-----------------   Screen   --------------------");
+                Console.WriteLine("*************************************************");
+                Console.WriteLine();
+
+                string[] SeatsFirstRow = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10" };
+                Console.WriteLine("[{0}]", string.Join("   ", SeatsFirstRow));
+                Console.WriteLine();
+
+                string[] SeatsSecondRow = { "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" };
+                Console.WriteLine("[{0}]", string.Join("   ", SeatsSecondRow));
+                Console.WriteLine();
+
+                string[] SeatsThrirdRow = { "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" };
+                Console.WriteLine("[{0}]", string.Join("   ", SeatsThrirdRow));
+                Console.WriteLine();
+
+                string[] SeatsFourthRow = { "31", "32", "33", "34", "35", "36", "37", "38", "39", "40" };
+                Console.WriteLine("[{0}]", string.Join("   ", SeatsFourthRow));
+                Console.WriteLine();
+
+                string[] SeatsFifthRow = { "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" };
+                Console.WriteLine("[{0}]", string.Join("   ", SeatsFifthRow));
+                Console.WriteLine();
+
+                Console.WriteLine("*************************************************");
+
+                int[] Seats = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
+                List<int> TakenSeats = new List<int>();
+                string TakenSeats2 = System.IO.File.ReadAllText(@"C:\Users\derek\source\repos\Cinema_Seat_System\TakenSeats.txt");
+                Console.WriteLine("Enter amount of seats ordered:");
+                int TotalSeatsOrdered = 0;
+                while (TotalSeatsOrdered == 0)
+                {
+                    try
+                    {
+                        TotalSeatsOrdered = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.WriteLine("That's not a number, try again");
+                        Console.WriteLine("Enter amount of seats ordered:");
+                    }
+                }
+                while (TotalSeatsOrdered > 0)
+                {
+                    Console.WriteLine("Enter the seat number you want: (" + TotalSeatsOrdered + " left)");
+                    try
+                    {
+                        int UserSeat = Convert.ToInt32(Console.ReadLine());
+                        if (UserSeat > 50)
+                        {
+                            Console.WriteLine("That seat doesnt exist, try again");
+                            Console.WriteLine("Enter the seat number you want: (" + TotalSeatsOrdered + " left)");
+                        }
+                        else if (TakenSeats.Contains(UserSeat))
+                        {
+                            Console.WriteLine("Seat already taken, choose another seat please");
+                        }
+                        else
+                        {
+                            TakenSeats.Add(UserSeat);
+                            TotalSeatsOrdered = TotalSeatsOrdered - 1;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("That's not a number, try again");
+                    }
+                }
+
+                Console.WriteLine("Seats are chosen");
+                Console.WriteLine("Continue to pay...");
+            }
             HomeScreen();
+            CinemaSeats();
         }
     }
 }
